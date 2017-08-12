@@ -9,7 +9,6 @@
     - stuff: STRING
     - amount: INT
     - price each: INT
-    - removed: BOOL
 
 ---
 
@@ -26,14 +25,14 @@
 3. Look up "price each"/"amount" from **Storage**
 4. Get amount of purchase and price each, calculate total
 5. Add 
-    1. In **Customer**, add "purchase" to "purchases[]" of "customer-name"
-    2. In **Daily**, add "customer-name" to "customers[]" of "date" (Check duplication)
+    1. In **Customer**, add "purchase" to "purchases[]" of "customer-name" ('$push')
+    2. In **Daily**, add "customer-name" to "customers[]" of "date" (Check duplication, '$addToSet')
 6. Update
     1. In **Storage**, update "amount" of "stuff-name"
 
 ##### 2. Remove stuff
 1. Update
-    1. In **Customer**, search for the purchase, update "purchase" in "purchases[]" as "removed: true"
+    1. In **Customer**, search for the purchase, pull "purchase" in "purchases[]"
     2. In **Daily**, check other purchases of "customer-name", if no other purchase of "date", update "customers[]"
     3. In **Storage**, update "amount" of "stuff-name"
 
