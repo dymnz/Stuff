@@ -17,6 +17,7 @@
 * Stuff 2/Amount/Price each/Total
 ...
 * Sum of Total
+
 **1. Add stuff**
     1. Name
     2. Amount
@@ -29,6 +30,9 @@
 #### List of stuff
 * Stuff 1/ Amount
 * Stuff 2/ Amount
+...
+* Stuff N/ Amount
+
 **1. Add stuff**
     1. Name
     2. Amount
