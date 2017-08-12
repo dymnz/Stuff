@@ -37,6 +37,8 @@
     2. In **Daily**, check other purchases of "customer-name", if no other purchase of "date", update "customers[]"
     3. In **Storage**, update "amount" of "stuff-name"
 
+---
+
 #### Storage
 * stuffs[]   (Current state)
     - name
