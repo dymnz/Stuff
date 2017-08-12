@@ -17,7 +17,7 @@ def increase_stuff(db, name, change):
 	try: 
 		db.Storage.update_one(
 			{'name': name},
-			{'$set': {
+			{'$inc': {
 				'amount': change
 			}}
 		)
@@ -35,15 +35,15 @@ def decrease_stuff(db, name, change):
 				'amount': -change
 			}}
 		)
-		logging.info('Added stuff {}, {}'.format(name, -change))
+		logging.info('Decreased stuff {}, {}'.format(name, change))
 
 	except Exception as e:
-		logging.error('Error adding stuff {}, {}'.format(name, -change))
+		logging.error('Error decreasing stuff {}, {}'.format(name, change))
 		logging.error(e)
 
 def delete_stuff(db, name):
 	try: 
-		db.Storage.delete(
+		db.Storage.delete_one(
 			{'name': name}
 		)
 		logging.info('Removed stuff {}'.format(name))

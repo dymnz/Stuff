@@ -33,3 +33,25 @@ def remove_purchase_test(db):
 	cus_1 = cm.get_customer_by_name(db, 'cus_1')
 	print(cus_1)
 
+def add_stuff_test(db):	
+	sm.new_stuff(db, 'stu_1', 100)
+	name_list = sm.get_stuff_names(db)
+	print(name_list)
+
+	stu_1 = sm.get_stuff_by_name(db, 'stu_1')
+	print(stu_1)
+
+	sm.increase_stuff(db, 'stu_1', 10)	
+	stu_1 = sm.get_stuff_by_name(db, 'stu_1')
+	print(stu_1)
+
+	sm.decrease_stuff(db, 'stu_1', 10)	
+	stu_1 = sm.get_stuff_by_name(db, 'stu_1')
+	print(stu_1)
+
+	name_list = sm.get_stuff_names(db)
+	print(name_list)
+
+	sm.delete_stuff(db, 'stu_1')
+	name_list = sm.get_stuff_names(db)
+	print(name_list)
