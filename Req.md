@@ -21,6 +21,7 @@
 **1. Add stuff**
     1. Name
     2. Amount
+    
 **2. Remove stuff**
 
 ----
@@ -36,6 +37,7 @@
 **1. Add stuff**
     1. Name
     2. Amount
+    
 **2. New stuff**
     1. Name
     2. Price
