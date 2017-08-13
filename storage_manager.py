@@ -7,11 +7,21 @@ def new_stuff(db, name, price):
 			'amount': 0,
 			'price': price
 		})
-		logging.info('New stuff {}, {}'.format(name, price))
+		logging.debug('New stuff: {}, {}'.format(name, price))
 
 	except Exception as e:
-		logging.error('Error new stuff {}, {}, {}'.format(name, price))
+		logging.error('Error new stuff: {}, {}, {}'.format(name, price))
 		logging.error(e)
+
+def delete_stuff(db, name):
+	try: 
+		db.Storage.delete_one(
+			{'name': name}
+		)
+		logging.debug('Removed stuff: {}'.format(name))
+	except Exception as e:
+		logging.error('Error removing stuff: {}'.format(name))
+		logging.error(e)	
 
 def increase_stuff(db, name, change):
 	try: 
@@ -21,10 +31,10 @@ def increase_stuff(db, name, change):
 				'amount': change
 			}}
 		)
-		logging.info('Added stuff {}, {}'.format(name, change))
+		logging.debug('Added stuff: {}, {}'.format(name, change))
 
 	except Exception as e:
-		logging.error('Error adding stuff {}, {}'.format(name, change))
+		logging.error('Error adding stuff: {}, {}'.format(name, change))
 		logging.error(e)
 
 def decrease_stuff(db, name, change):
@@ -35,21 +45,25 @@ def decrease_stuff(db, name, change):
 				'amount': -change
 			}}
 		)
-		logging.info('Decreased stuff {}, {}'.format(name, change))
+		logging.debug('Decreased stuff: {}, {}'.format(name, change))
 
 	except Exception as e:
-		logging.error('Error decreasing stuff {}, {}'.format(name, change))
+		logging.error('Error decreasing stuff: {}, {}'.format(name, change))
 		logging.error(e)
 
-def delete_stuff(db, name):
+def set_stuff_price(db, name, price):
 	try: 
-		db.Storage.delete_one(
-			{'name': name}
+		db.Storage.update_one(
+			{'name': name},
+			{'$set': {
+				'price': price
+			}}
 		)
-		logging.info('Removed stuff {}'.format(name))
+		logging.debug('Set stuff price: {}, {}'.format(name, price))
+
 	except Exception as e:
-		logging.error('Error removing stuff {}'.format(name))
-		logging.error(e)	
+		logging.error('Error setting stuff price: {}, {}'.format(name, price))
+		logging.error(e)
 
 def get_stuff_by_name(db, name):
 	return db.Storage.find_one({'name': name});
