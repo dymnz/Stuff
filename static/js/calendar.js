@@ -28,6 +28,10 @@ next.onclick = function() {
 var today = document.getElementById("today");
 today.href = window.location.href + 'show?date=' + year + '_' + month + '_' + date;
 
+var storage = document.getElementById("storage");
+storage.href = window.location.href + 'storage'
+
+
 window.onload = function () { 
   update_calendar();
 }

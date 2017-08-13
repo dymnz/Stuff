@@ -1,0 +1,131 @@
+* {box-sizing:border-box;}
+body {
+	font-family: Verdana,sans-serif;
+	margin:0 auto;
+	width: 90%;
+	color: #444;
+	text-align: center;
+	margin-bottom: 100px;
+}
+div{
+	display: inline-block;
+}
+
+table{
+    table-layout: fixed;
+    margin: 0 auto;
+    width: 90%;
+}
+
+td {
+	width: 90%;
+}
+#new_purchase {
+	margin: 20px 10px 0px 10px;	
+	width: 100%;
+}
+#title {
+	font-size: 50px;
+	text-align: center;
+	margin: 20px 0 0 0;
+}
+
+.customer {
+	padding: 3px 0 3px 0;
+	width: 90%;
+	font-size: 30px;
+	margin: 0px 20px 0px 20px;
+	font-weight: bold;
+	text-align: center;
+	background-color: #b1d845;
+	margin-top: 20px;
+}
+.sum_total{
+	width: 90%;
+	font-size: 25px;
+	margin: 0px 20px 20px 20px;
+	font-weight: bold;
+	text-align: right;
+	background-color: #eef442;
+	margin: 0 auto;
+	padding-right: 20px;
+}
+.thread {
+	background-color: #c9ed65;
+}
+
+.record{
+	font-size: 22px;
+	text-align: center;
+	background-color: #eef442;
+}
+
+#new_purchase {
+	font-size: 22px;
+}
+
+input, #submit {
+	font-size: 22px;
+	width: 100px;
+	margin: 0;
+}
+
+.form_cell {
+	margin-right: 30px;
+}
+
+#add_form .form_cell{
+	text-align: center;
+	display: block;
+	margin: 0 auto;
+}
+
+#add_form input{
+	text-align: center;
+}
+
+#remove_form #submit{
+	background-color: #ee9999;
+}
+
+#submit {
+	border-radius: 7px;
+	background-color: #99ee99;
+	border-style: solid;
+	border-width: 0px;
+}
+
+#submit:hover {
+	background-color: #ccffcc;
+	cursor: pointer;
+}
+
+#back_button {
+    margin: 5px;
+    padding: 5px;
+    text-align: center;
+    width: 150px;
+    height: 50px;
+    border-radius: 5px;
+    font-size: 25px;
+    background-color: #33ffff;
+	position: fixed;
+	top: 20px;
+	left: 20px;
+}
+
+#back_button:hover {
+	background-color: #eeffff;
+	cursor: pointer;
+}
+
+footer {
+    width: 100%;
+    margin-top: 80px;
+    padding: 5px;
+    background-color: #ddd;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}

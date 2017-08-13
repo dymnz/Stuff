@@ -3,7 +3,10 @@ import customer_manager as cm
 import storage_manager as sm
 import daily_manager as dm
 
-def new_purchase(db, date, customer, stuff, amount, price):
+def new_purchase(db, date, customer, stuff, amount):
+
+	price = sm.get_stuff_by_name(db, stuff)['price']
+
 	logging.info('New purchase: {}, {}, {}, {}, {}'.format(date, customer, stuff, amount, price))
 
 	cm.add_customer(db, customer, None, None)

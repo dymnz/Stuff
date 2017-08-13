@@ -99,6 +99,25 @@ body {font-family: Verdana,sans-serif;}
     cursor: pointer;
 }
 
+
+#storage {
+    margin: 5px;
+    padding: 5px;
+    text-align: center;
+    width: 150px;
+    float: right;
+    border-radius: 5px;
+    font-size: 25px;
+    background-color: #ff3333;
+    text-decoration: none;
+}
+
+#storage:hover { 
+    background-color: #ffeeee;
+    cursor: pointer;
+}
+
+
 /* Add media queries for smaller screens */
 @media screen and (max-width:720px) {
     .weekdays li, .days a {width: 13.1%;}

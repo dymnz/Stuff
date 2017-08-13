@@ -2,11 +2,13 @@ from flask import Flask, render_template, request, redirect, Response, url_for
 from pymongo import MongoClient
 from log import *
 import daily_operation as do
+import storage_operation as so
 import json
 
 app = Flask(__name__)
 client = MongoClient('localhost:27017')
 db = client.Shop
+setup_logger()
 
 @app.route('/show')
 def show():
@@ -29,19 +31,18 @@ def show():
 	all_purchase_list = zip(all_purchase_list, sum_total_list)
 	return render_template('date.html', date=date, all_purchase_list=all_purchase_list)
 
-@app.route('/show', methods=['POST'])
+@app.route('/new_purchase', methods=['POST'])
 def new_purchase():
 	do.new_purchase(db, 
 		request.form['date'], 
 		request.form['customer'], 
 		request.form['stuff'],
-		int(request.form['amount']),
-		int(request.form['price']))
-	date = request.form['date'];
-	all_purchase_list = do.get_purchases_at_date(db, date)
+		int(request.form['amount']))
+	
+	all_purchase_list = do.get_purchases_at_date(db, request.form['date'])
 
 	if all_purchase_list is None: 
-		return render_template('date.html', date=date)
+		return render_template('date.html', date=request.form['date'])
 
 	sum_total_list = []
 	
@@ -53,12 +54,51 @@ def new_purchase():
 		sum_total_list.append(sum_total)
 
 	all_purchase_list = zip(all_purchase_list, sum_total_list)
-	return redirect(url_for('show', date=date))
+	return redirect(url_for('show', date=request.form['date']))
 
+@app.route('/storage')
+def show_storage():
+	all_stuff_list = so.get_stuff_list(db)
+	return render_template('storage.html', all_stuff_list=all_stuff_list )
+
+
+@app.route('/remove_purchase', methods=['POST'])
+def remove_purchase():
+	do.remove_purchase(db, 
+		request.form['date'], 
+		request.form['customer'], 
+		request.form['stuff'],
+		int(request.form['amount']),
+		int(request.form['price']))
+	return redirect(url_for('show', date=request.form['date']))
+
+
+@app.route('/new_stuff', methods=['POST'])
+def new_stuff():
+	so.new_stuff(db, 
+		request.form['name'], 
+		int(request.form['price'])
+	)
+	return redirect(url_for('show_storage'))
+
+@app.route('/increase_stuff', methods=['POST'])
+def increase_stuff():
+	so.increase_stuff(db, 
+		request.form['name'], 
+		int(request.form['amount'])
+	)
+	return redirect(url_for('show_storage'))
+
+@app.route('/remove_stuff', methods=['POST'])
+def remove_stuff():
+	so.remove_stuff(db, 
+		request.form['name']
+	)
+	return redirect(url_for('show_storage'))		
 	
-
 @app.route('/')
 def show_calendar():
+
 	return render_template('calendar.html')
 
 

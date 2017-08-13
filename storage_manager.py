@@ -13,7 +13,7 @@ def new_stuff(db, name, price):
 		logging.error('Error new stuff: {}, {}, {}'.format(name, price))
 		logging.error(e)
 
-def delete_stuff(db, name):
+def remove_stuff(db, name):
 	try: 
 		db.Storage.delete_one(
 			{'name': name}

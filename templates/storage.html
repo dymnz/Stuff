@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>庫存</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<script type="text/javascript"></script>
+	<link rel="stylesheet" href="{{ url_for('static', filename='storage.css') }}">
+</head>
+<body>
+
+<div id="back_button" onclick="location.href='{{ url_for('show_calendar')}}';">回主頁</div>
+
+<div id="title">
+	庫存
+</div>
+
+<form id="new_stuff" action="{{ url_for('new_stuff')}}" method="post">	
+   	<div class="form_cell">品項: <input type="text" name="name"></div>	
+   	<div class="form_cell">單價: <input type="number" name="price"></div>		 
+    <button id='submit' type="submit">新增</button>
+</form>
+
+{% if all_stuff_list is not none and all_stuff_list is defined and all_stuff_list %}
+ <table>
+ <tbody>
+	<tr class="thread">
+		<th>品項</th><th>斤</th><th>單價</th><th>進貨</th><th>移除</th>
+	</tr>
+	{% for stuff in all_stuff_list %}
+	<tr class="record">
+		<td class="stuff">{{stuff.name}}</td>
+		<td class="amount">{{stuff.amount}}</td>
+		<td class="price">{{stuff.price}}</td>
+		<td>
+		<form id="add_form" action="{{ url_for('increase_stuff')}}" method="post">
+			<div style="display: none;" class="form_cell"><input type="text" name="name" value="{{stuff.name}}"></div>		
+		   	<div class="form_cell"><input type="number" name="amount"></div>
+    		<button id='submit' type="submit">+</button>
+		</form>	
+		</td>
+		<td>
+		<form id="remove_form" action="{{ url_for('remove_stuff')}}" method="post">
+			<div style="display: none;" class="form_cell"><input type="text" name="name" value="{{stuff.name}}"></div>
+    		<button id='submit' type="submit">X</button>
+		</form>	
+		</td>
+
+	</tr>
+	{% endfor %}
+</tbody>	
+</table>
+<div class="sum_total">{{sum_total}}</div>
+{% else %}
+<div class="title">沒有庫存</div>
+{% endif %}
+
+</body>
+
+<footer>By Jacky Wang (vicodin1123@gmail.com)</footer>
+
+<script>
+</script>
+
+</html>
