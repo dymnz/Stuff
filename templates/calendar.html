@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="{{ url_for('static', filename='calendar.css') }}">
+</head>
+<body>
+
+<div class="month">    
+  <div id="prev" class="button">
+    &#10094;
+  </div>  
+  <div id='date'>
+    <span id="month"></span><br>
+    <span id="year" style="font-size:18px"></span>
+  </div>
+ <div id="next" class="button">
+    &#10095;
+  </div> 
+</div>
+
+<ul id="days_list" class="days">  
+ 
+</ul>
+
+</body>
+
+<script>
+var currentTime = new Date();
+var year = currentTime.getFullYear();
+var month = currentTime.getMonth() + 1;
+var date = currentTime.getDate();
+
+var prev = document.getElementById("prev");
+prev.onclick = function() {
+  if (month == 1) {
+    month = 12;
+    year--;
+  } else {
+    month--;
+  }
+  update_calendar();
+}
+
+var next = document.getElementById("next");
+next.onclick = function() {
+  if (month == 12) {
+    month = 1;
+    year++;
+  } else {
+    month++;
+  }
+  update_calendar();
+}
+
+window.onload = function () { 
+  update_calendar();
+}
+
+function update_calendar() {
+  document.getElementById("year").innerHTML = year;
+  document.getElementById("month").innerHTML = month;
+
+  var list = document.getElementById("days_list");
+  list.innerHTML = "";
+
+  for (var i = 0 ; i < daysInMonth(month, year) ; i++) {
+    var entry = document.createElement('a');
+    entry.appendChild(document.createTextNode(i+1));
+    entry.href = window.location.href + 'show?date=' + year + '_' + month + '_' + (i+1);
+    list.appendChild(entry);
+  }
+}
+
+function daysInMonth(month, year) {
+  return new Date(year, month, 0).getDate();
+}
+
+</script>
+
+</html>

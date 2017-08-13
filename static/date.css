@@ -1,0 +1,48 @@
+
+body {
+	font-family: Verdana,sans-serif;
+	width: 90%;
+}
+
+
+
+table{
+    table-layout: fixed;
+    margin: 0px 20px 0px 20px;
+    width: 100%;
+
+}
+
+#new_purchase {
+	margin: 20px 10px 0px 10px;	
+	width: 100%;
+}
+
+tr {
+	width: 100%;
+}
+.customer {
+	width: 100%;
+	font-size: 30px;
+	margin: 0px 20px 0px 20px;
+	font-weight: bold;
+	text-align: center;
+	background-color: #b1d845;
+}
+.sum_total{
+	width: 100%;
+	font-size: 30px;
+	margin: 0px 20px 20px 20px;
+	font-weight: bold;
+	text-align: right;
+	background-color: #eef442;
+}
+.thread {
+	background-color: #c9ed65;
+}
+
+.record{
+	font-size: 22px;
+	text-align: center;
+	background-color: #eef442;
+}

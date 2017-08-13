@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{{date}}</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<script type="text/javascript"></script>
+	<link rel="stylesheet" href="{{ url_for('static', filename='date.css') }}">
+</head>
+<body>
+{% if all_purchase_list is not none and all_purchase_list is defined and all_purchase_list %}
+{% for tuple, sum_total in all_purchase_list %}
+<div class="customer">{{tuple[0]}}{{sum_total}}</div>
+ <table>
+ <tbody>
+	<tr class="thread">
+		<th>stuff</th><th>amount</th><th>price</th><th>total</th>
+	</tr>
+	{% for purchase in tuple[1] %}
+	<tr class="record">
+		<td class="stuff">{{purchase.stuff}}</td>
+		<td class="amount">{{purchase.amount}}</td>
+		<td class="price">{{purchase.price}}</td>
+		<td class="total">{{purchase.total}}</td>
+	</tr>
+	{% endfor %}
+</tbody>	
+</table>
+<div class="sum_total">{{sum_total}}</div>
+{% endfor %}
+{% endif %}
+
+<form id="new_purchase" action="{{ url_for('new_purchase') }}" method="post">
+	<input style="display: none;" type="text" name="date" value={{date}}>
+    客人<input type="text" name="customer">
+    物件<input type="text" name="stuff">
+    數量<input type="text" name="amount">
+    價格<input type="text" name="price">
+    <input type="submit" value="新增">
+</form>
+
+
+
+
+</body>
+
+<script>
+</script>
+
+</html>
