@@ -7,13 +7,31 @@
 	<link rel="stylesheet" href="{{ url_for('static', filename='date.css') }}">
 </head>
 <body>
+
+<div id="back_button" onclick="location.href='{{ url_for('show_calendar')}}';">回主頁</div>
+
+<div id="title">
+	{% set split_date = date.split('_') %}
+	{{split_date[0]}} 年 {{split_date[1]}} 月 {{split_date[2]}} 號
+</div>
+
+<form id="new_purchase" action="{{ url_for('show')}}" method="post">
+	<input style="display: none;" type="text" name="date" value={{date}}>
+   	<div class="form_cell">客人: <input type="text" name="customer"></div>	
+   	<div class="form_cell">品項: <input type="text" name="stuff"></div>	
+   	<div class="form_cell">斤: <input type="number" name="amount"></div>	
+   	<div class="form_cell">價格: <input type="number" name="price"></div>	 
+    <button id='submit' type="submit">新增</button>
+</form>
+
+
 {% if all_purchase_list is not none and all_purchase_list is defined and all_purchase_list %}
 {% for tuple, sum_total in all_purchase_list %}
-<div class="customer">{{tuple[0]}}{{sum_total}}</div>
+<div class="customer">{{tuple[0]}}</div>
  <table>
  <tbody>
 	<tr class="thread">
-		<th>stuff</th><th>amount</th><th>price</th><th>total</th>
+		<th>品項</th><th>斤</th><th>單價</th><th>總價</th>
 	</tr>
 	{% for purchase in tuple[1] %}
 	<tr class="record">
@@ -29,19 +47,9 @@
 {% endfor %}
 {% endif %}
 
-<form id="new_purchase" action="{{ url_for('new_purchase') }}" method="post">
-	<input style="display: none;" type="text" name="date" value={{date}}>
-    客人<input type="text" name="customer">
-    物件<input type="text" name="stuff">
-    數量<input type="text" name="amount">
-    價格<input type="text" name="price">
-    <input type="submit" value="新增">
-</form>
-
-
-
-
 </body>
+
+<footer>By Jacky Wang (vicodin1123@gmail.com)</footer>
 
 <script>
 </script>

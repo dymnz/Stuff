@@ -18,10 +18,10 @@ body {font-family: Verdana,sans-serif;}
 
 .month #date{
     color: white;
-    font-size: 45px;
+    font-size: 40px;
     text-transform: uppercase;
     letter-spacing: 3px;
-    width: 55%;
+    width: 55%;a
 }
 
 .month #prev {
@@ -38,6 +38,10 @@ body {font-family: Verdana,sans-serif;}
     font-size:50px;
 }
 
+.month .button:hover {
+    color: white;
+    cursor: pointer;
+}
 .weekdays {
     margin: 0;
     padding: 10px 0;
@@ -47,8 +51,9 @@ body {font-family: Verdana,sans-serif;}
 .weekdays li {
     display: inline-block;
     width: 13.6%;
-    color: #666;
+    color: #444;
     text-align: center;
+    margin: 3px 3px 3px 3px;
 }
 
 .days {
@@ -62,15 +67,36 @@ body {font-family: Verdana,sans-serif;}
     display: inline-block;
     width: 13.6%;
     text-align: center;
-    margin-bottom: 5px;
-    font-size:22px;
-    color: #777;
+    margin-bottom: 10px;
+    font-size: 30px;
+    color: #444;
 }
 
 .days a .active {
     padding: 5px;
     background: #1abc9c;
     color: white !important
+}
+
+.current {
+    background-color: #cc3333;
+}
+
+#today {
+    margin: 5px;
+    padding: 5px;
+    text-align: center;
+    width: 150px;
+    float: right;
+    border-radius: 5px;
+    font-size: 25px;
+    background-color: #33ffff;
+    text-decoration: none;
+}
+
+#today:hover { 
+    background-color: #eeffff;
+    cursor: pointer;
 }
 
 /* Add media queries for smaller screens */
@@ -85,4 +111,16 @@ body {font-family: Verdana,sans-serif;}
 
 @media screen and (max-width: 290px) {
     .weekdays li, .days a {width: 12.2%;}
+}
+
+
+footer {
+    width: 100%;
+    margin-top: 80px;
+    padding: 5px;
+    background-color: #ddd;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
 }
