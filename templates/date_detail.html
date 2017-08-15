@@ -26,24 +26,44 @@
 
 
 {% if all_purchase_list is not none and all_purchase_list is defined and all_purchase_list %}
-<table>
+{% for tuple, sum_total in all_purchase_list %}
+<div class="customer"><a href="{{ url_for('date_customer', date=date, customer=tuple[0])}}">{{tuple[0]}}</a></div>
+ <table>
  <tbody>
 	<tr class="thread">
-		<th>客人</th><th>總價</th>
+		<th>品項</th><th>斤</th><th>單價</th><th>總價</th><th>移除</th>
 	</tr>
-	{% for tuple, sum_total in all_purchase_list %}
+	{% for purchase in tuple[1] %}
 	<tr class="record">
-		<td class=""><a href="{{ url_for('date_customer', date=date, customer=tuple[0])}}">{{tuple[0]}}</a></td>
-		<td class="">{{sum_total}}</td>
+		<td class="stuff">{{purchase.stuff}}</td>
+		<td class="amount">{{purchase.amount}}</td>
+		<td class="price">{{purchase.price}}</td>
+		<td class="total">{{purchase.total}}</td>
+		<td>
+			<form id="remove_purchase" action="{{ url_for('remove_purchase')}}" method="post">
+			<input style="display: none;" type="text" name="date" value={{date}}>
+		   	<input style="display: none;" type="text" name="customer" value={{tuple[0]}}>
+		   	<input style="display: none;" type="text" name="stuff" value={{purchase.stuff}}>
+		   	<input style="display: none;" type="number" name="amount" value={{purchase.amount}}>
+		   	<input style="display: none;" type="number" name="price" value={{purchase.price}}>
+		    <button id='submit' type="submit">X</button>
+		</form>
+		</td>
 	</tr>
 	{% endfor %}
 </tbody>	
 </table>
-
+<div class="sum_total">{{sum_total}}</div>
+{% endfor %}
 {% else %}
 <div class="title">沒有購買紀錄</div>
 {% endif %}
 
 </body>
+
 <footer>By Jacky Wang (vicodin1123@gmail.com)</footer>
+
+<script>
+</script>
+
 </html>

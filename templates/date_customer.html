@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{{date}}</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<script type="text/javascript"></script>
+	<link rel="stylesheet" href="{{ url_for('static', filename='date_customer.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='common.css') }}">
+</head>
+<body>
+
+<div id="back_button" onclick="location.href='{{ url_for('date', date=date)}}';">回主頁</div>
+
+<div class="title">
+	{% set split_date = date.split('_') %}
+	{{split_date[0]}} 年 {{split_date[1]}} 月 {{split_date[2]}} 號
+	<br>
+	{{ customer}}
+</div>
+
+<form id="new_purchase" action="{{ url_for('new_purchase')}}" method="post">
+	<input style="display: none;" type="text" name="date" value={{date}}>
+   	<input style="display: none;" type="text" name="customer" value={{customer}}>
+   	<div class="form_cell">品項: <input type="text" name="stuff"></div>	
+   	<div class="form_cell">斤: <input type="number" name="amount"></div>	
+    <button id='submit' type="submit">新增</button>
+</form>
+
+
+{% if purchase_list is not none and purchase_list is defined and purchase_list %}
+
+ <table>
+ <tbody>
+	<tr class="thread">
+		<th>品項</th><th>斤</th><th>單價</th><th>總價</th><th>移除</th>
+	</tr>
+	{% for purchase in purchase_list %}
+	<tr class="record">
+		<td class="stuff">{{purchase.stuff}}</td>
+		<td class="amount">{{purchase.amount}}</td>
+		<td class="price">{{purchase.price}}</td>
+		<td class="total">{{purchase.total}}</td>
+		<td>
+			<form id="remove_purchase" action="{{ url_for('remove_purchase')}}" method="post">
+			<input style="display: none;" type="text" name="date" value={{date}}>
+		   	<input style="display: none;" type="text" name="customer" value={{customer}}>
+		   	<input style="display: none;" type="text" name="stuff" value={{purchase.stuff}}>
+		   	<input style="display: none;" type="number" name="amount" value={{purchase.amount}}>
+		   	<input style="display: none;" type="number" name="price" value={{purchase.price}}>
+		    <button id='submit' type="submit">X</button>
+		</form>
+		</td>
+	</tr>
+	{% endfor %}
+</tbody>	
+</table>
+<div class="sum_total">{{sum_total}}</div>
+
+{% else %}
+<div class="title">沒有購買紀錄</div>
+{% endif %}
+
+</body>
+
+<footer>By Jacky Wang (vicodin1123@gmail.com)</footer>
+
+<script>
+</script>
+
+</html>

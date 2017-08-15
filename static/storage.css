@@ -1,16 +1,3 @@
-* {box-sizing:border-box;}
-body {
-	font-family: Verdana,sans-serif;
-	margin:0 auto;
-	width: 90%;
-	color: #444;
-	text-align: center;
-	margin-bottom: 100px;
-}
-div{
-	display: inline-block;
-}
-
 table{
     table-layout: fixed;
     margin: 0 auto;
@@ -51,13 +38,12 @@ td {
 	padding-right: 20px;
 }
 .thread {
-	background-color: #c9ed65;
+	background-color: #fffb60;
 }
-
 .record{
 	font-size: 22px;
 	text-align: center;
-	background-color: #eef442;
+	background-color: #fffc66;
 }
 
 #new_purchase {
@@ -88,15 +74,16 @@ input, #submit {
 	background-color: #ee9999;
 }
 
-#submit {
+.submit {
 	border-radius: 7px;
 	background-color: #99ee99;
 	border-style: solid;
 	border-width: 0px;
+	width: 100px;
 }
 
-#submit:hover {
-	background-color: #ccffcc;
+.submit:hover {
+	opacity: 0.4;
 	cursor: pointer;
 }
 
@@ -113,10 +100,13 @@ input, #submit {
 	top: 20px;
 	left: 20px;
 }
-
 #back_button:hover {
 	background-color: #eeffff;
 	cursor: pointer;
+}
+
+#remove_button {
+	background-color: #ff4d3d;
 }
 
 footer {

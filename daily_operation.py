@@ -40,6 +40,23 @@ def get_purchases_at_date(db, date):
 		all_purchase_list.append((customer, purchase_list))
 
 	return all_purchase_list
+
+def get_purchases_at_date_of_customer(db, date, customer):
+	entry = dm.get_daily_entry_by_date(db, date)
+
+	if entry is None or len(entry) == 0:
+		return None
+
+	if customer not in entry['customers']:
+		return None
+
+	purchase_list = cm.get_purchases_at_date(db, customer, date)
+
+	if purchase_list is None:
+		return None
+
+	return purchase_list[0]['purchases']
+
 	
 
 

@@ -1,7 +1,3 @@
-* {box-sizing:border-box;}
-ul {list-style-type: none;}
-body {font-family: Verdana,sans-serif;}
-
 .month {
     width: 100%;
     height: 70px;
@@ -45,7 +41,7 @@ body {font-family: Verdana,sans-serif;}
 .weekdays {
     margin: 0;
     padding: 10px 0;
-    background-color: #ddd;
+    background-color: #eeeeee;
 }
 
 .weekdays li {
@@ -58,7 +54,7 @@ body {font-family: Verdana,sans-serif;}
 
 .days {
     padding: 10px 0;
-    background: #eee;
+    background: #eeeeee;
     margin: 0;
 }
 
@@ -117,6 +113,11 @@ body {font-family: Verdana,sans-serif;}
     cursor: pointer;
 }
 
+.title {
+    font-size: 50px;
+    text-align: center;
+    margin: 20px 0 0 0;
+}
 
 /* Add media queries for smaller screens */
 @media screen and (max-width:720px) {
@@ -130,16 +131,4 @@ body {font-family: Verdana,sans-serif;}
 
 @media screen and (max-width: 290px) {
     .weekdays li, .days a {width: 12.2%;}
-}
-
-
-footer {
-    width: 100%;
-    margin-top: 80px;
-    padding: 5px;
-    background-color: #ddd;
-    text-align: center;
-    position: fixed;
-    bottom: 0;
-    left: 0;
 }

@@ -26,7 +26,7 @@ next.onclick = function() {
 }
 
 var today = document.getElementById("today");
-today.href = window.location.href + 'show?date=' + year + '_' + month + '_' + date;
+today.href = window.location.href + 'date?date=' + year + '_' + month + '_' + date;
 
 var storage = document.getElementById("storage");
 storage.href = window.location.href + 'storage'
@@ -46,7 +46,7 @@ function update_calendar() {
   for (var i = 0 ; i < daysInMonth(month, year) ; i++) {
     var entry = document.createElement('a');
     entry.appendChild(document.createTextNode(i+1));
-    entry.href = window.location.href + 'show?date=' + year + '_' + month + '_' + (i+1);
+    entry.href = window.location.href + 'date?date=' + year + '_' + month + '_' + (i+1);
 
     if (year == currentTime.getFullYear() && month == currentTime.getMonth() + 1 && date == (i+1))
       entry.className = "current"

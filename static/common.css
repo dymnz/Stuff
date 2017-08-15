@@ -1,0 +1,38 @@
+* {box-sizing:border-box;}
+ul {list-style-type: none;}
+body {font-family: Verdana,sans-serif;background-color: #fff;}
+a {text-decoration: none;}
+
+form {
+    display: block;
+    text-align: center;
+}
+form div{
+    display: inline-block;
+}
+
+.title {
+    font-size: 50px;
+    text-align: center;
+    margin: 20px 0 0 0;
+    display: block;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover{
+    opacity: 0.4;
+}
+
+footer {
+    width: 100%;
+    margin-top: 80px;
+    padding: 5px;
+    background-color: #ddd;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
