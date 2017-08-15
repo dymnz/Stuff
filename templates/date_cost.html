@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<div id="back_button" onclick="location.href='{{ url_for('date', date=date)}}';">回主頁</div>
+<div id="back_button" onclick="location.href='{{ url_for('cost', date=date)}}';">回主頁</div>
 
 <div class="title">
 	{% set split_date = date.split('_') %}
@@ -32,13 +32,13 @@
  <table>
  <tbody>
 	<tr class="thread">
-		<th>品項</th><th>斤</th><th>單價</th><th>總價</th><th>移除</th>
+		<th>品項</th><th>斤</th><th>成本</th><th>總成本</th><th>移除</th>
 	</tr>
 	{% for purchase in purchase_list %}
 	<tr class="record">
 		<td class="stuff">{{purchase.stuff}}</td>
 		<td class="amount">{{purchase.amount}}</td>
-		<td class="price">{{purchase.price}}</td>
+		<td class="price">{{purchase.cost}}</td>
 		<td class="total">{{purchase.total}}</td>
 		<td>
 			<form id="remove_purchase" action="{{ url_for('remove_purchase')}}" method="post">

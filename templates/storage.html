@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<div id="back_button" onclick="location.href='{{ url_for('show_calendar')}}';">回主頁</div>
+<div id="back_button" onclick="location.href='{{ url_for('calendar')}}';">回主頁</div>
 
 <div class="title">
 	庫存
@@ -18,6 +18,7 @@
 <form id="new_stuff" action="{{ url_for('new_stuff')}}" method="post">	
    	<div class="form_cell">品項: <input type="text" name="name"></div>	
    	<div class="form_cell">單價: <input type="number" name="price"></div>		 
+   	<div class="form_cell">成本: <input type="number" name="cost"></div>		 
     <button id='submit' type="submit">新增</button>
 </form>
 
@@ -25,13 +26,14 @@
  <table>
  <tbody>
 	<tr class="thread">
-		<th>品項</th><th>斤</th><th>單價</th><th>進貨</th><th>移除</th>
+		<th>品項</th><th>斤</th><th>單價</th><th>成本</th><th>進貨</th><th>移除</th>
 	</tr>
 	{% for stuff in all_stuff_list %}
 	<tr class="record">
 		<td class="stuff">{{stuff.name}}</td>
 		<td class="amount">{{stuff.amount}}</td>
 		<td class="price">{{stuff.price}}</td>
+		<td class="price">{{stuff.cost}}</td>
 		<td>
 		<form id="add_form" action="{{ url_for('increase_stuff')}}" method="post">
 			<div style="display: none;" class="form_cell"><input type="text" name="name" value="{{stuff.name}}"></div>		

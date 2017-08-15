@@ -15,7 +15,7 @@
 	{% set split_date = date.split('_') %}
 	{{split_date[0]}} 年 {{split_date[1]}} 月 {{split_date[2]}} 號
 	<br>
-	銷售：{{ customer}}
+	成本：{{ customer}}
 </div>
 
 <form id="new_purchase" action="{{ url_for('new_purchase')}}" method="post">
@@ -32,13 +32,13 @@
  <table>
  <tbody>
 	<tr class="thread">
-		<th>品項</th><th>斤</th><th>單價</th><th>總價</th><th>移除</th>
+		<th>品項</th><th>斤</th><th>成本</th><th>總成本</th><th>移除</th>
 	</tr>
 	{% for purchase in purchase_list %}
 	<tr class="record">
 		<td class="stuff">{{purchase.stuff}}</td>
 		<td class="amount">{{purchase.amount}}</td>
-		<td class="price">{{purchase.price}}</td>
+		<td class="cost">{{purchase.cost}}</td>
 		<td class="total">{{purchase.total}}</td>
 		<td>
 			<form id="remove_purchase" action="{{ url_for('remove_purchase')}}" method="post">

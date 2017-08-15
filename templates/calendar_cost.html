@@ -2,12 +2,12 @@
 <html>
 <head>
 <!--Modified from https://www.w3schools.com/howto/howto_css_calendar.asp-->
-<link rel="stylesheet" href="{{ url_for('static', filename='calendar.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='calendar_cost.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='common.css') }}">
 </head>
 <body>
 
-<div class="title">Placehold.com</div>
+<div class="title">成本</div>
 
 <div class="month">    
   <div id="prev" class="button">
@@ -27,16 +27,16 @@
 </ul>
 </div>
 
-<a id="today" class="button">
+<a id="today">
   顯示今日
 </a>
 
-<a id="storage" class="button">
+<a id="storage">
   顯示庫存
 </a>
 
-<a id="cost" class="button">
-  顯示成本
+<a id="price" class="button">
+  顯示單價
 </a>
 
 
@@ -44,6 +44,6 @@
 
 </body>
 
-<script src="{{ url_for('static', filename='js/calendar.js') }}"></script>
+<script src="{{ url_for('static', filename='js/calendar_cost.js') }}"></script>
 
 </html>

@@ -19,7 +19,7 @@ def add_customer(db, name, phone, email):
 		logging.error(e)
 
 
-def add_purchase(db, name, date, stuff, amount, price):
+def add_purchase(db, name, date, stuff, amount, price, cost):
 	try: 
 		db.Customer.update_one(
 			{'name': name},
@@ -28,12 +28,13 @@ def add_purchase(db, name, date, stuff, amount, price):
 					'date': date,
 					'stuff': stuff,
 					'amount': amount,
-					'price': price
+					'price': price,
+					'cost': cost
 			}}}
 		)
-		logging.debug('Added purchase: {}, {}, {}, {}, {}'.format(name, date, stuff, amount, price))
+		logging.debug('Added purchase: {}, {}, {}, {}, {}, {}'.format(name, date, stuff, amount, price, cost))
 	except Exception as e:
-		logging.error('Error adding purchase: {}, {}, {}, {}, {}'.format(name, date, stuff, amount, price))
+		logging.error('Error adding purchase: {}, {}, {}, {}, {}, {}'.format(name, date, stuff, amount, price, cost))
 		logging.error(e)
 
 def remove_purchase(db, name, date, stuff, amount, price):

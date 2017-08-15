@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<div id="back_button" onclick="location.href='{{ url_for('calendar')}}';">回主頁</div>
+<div id="back_button" onclick="location.href='{{ url_for('calendar_cost')}}';">回主頁</div>
 
 <div class="title">
 	{% set split_date = date.split('_') %}
@@ -29,12 +29,13 @@
 <table>
  <tbody>
 	<tr class="thread">
-		<th>客人</th><th>總價</th>
+		<th>客人</th><th>總價</th><th>總成本</th>
 	</tr>
-	{% for tuple, sum_total in all_purchase_list %}
+	{% for tuple, sum_cost in all_purchase_list %}
 	<tr class="record">
-		<td class=""><a href="{{ url_for('date_customer', date=date, customer=tuple[0])}}">{{tuple[0]}}</a></td>
-		<td class="">{{sum_total}}</td>
+		<td class=""><a href="{{ url_for('cost_customer', date=date, customer=tuple[0])}}">{{tuple[0]}}</a></td>
+		<td class="">{{sum_cost[0]}}</td>
+		<td class="">{{sum_cost[1]}}</td>
 	</tr>
 	{% endfor %}
 </tbody>	

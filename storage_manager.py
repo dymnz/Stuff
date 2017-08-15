@@ -1,16 +1,17 @@
 from log import *
 
-def new_stuff(db, name, price):
+def new_stuff(db, name, price, cost):
 	try: 
 		db.Storage.insert_one({
 			'name': name,
 			'amount': 0,
-			'price': price
+			'price': price,
+			'cost': cost
 		})
-		logging.debug('New stuff: {}, {}'.format(name, price))
+		logging.debug('New stuff: {}, {}, {}'.format(name, price, cost))
 
 	except Exception as e:
-		logging.error('Error new stuff: {}, {}, {}'.format(name, price))
+		logging.error('Error new stuff: {}, {}, {}'.format(name, price, cost))
 		logging.error(e)
 
 def remove_stuff(db, name):
@@ -64,6 +65,21 @@ def set_stuff_price(db, name, price):
 	except Exception as e:
 		logging.error('Error setting stuff price: {}, {}'.format(name, price))
 		logging.error(e)
+
+def set_stuff_cost(db, name, cost):
+	try: 
+		db.Storage.update_one(
+			{'name': name},
+			{'$set': {
+				'cost': cost
+			}}
+		)
+		logging.debug('Set stuff cost: {}, {}'.format(name, cost))
+
+	except Exception as e:
+		logging.error('Error setting stuff cost: {}, {}'.format(name, cost))
+		logging.error(e)
+
 
 def get_stuff_by_name(db, name):
 	return db.Storage.find_one({'name': name});

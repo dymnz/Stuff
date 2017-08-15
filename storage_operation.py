@@ -1,9 +1,9 @@
 from log import *
 import storage_manager as sm
 
-def new_stuff(db, name, price):
-	logging.info('New stuff: {}, {}'.format(name, price))
-	sm.new_stuff(db, name, price)
+def new_stuff(db, name, price, cost):
+	logging.info('New stuff: {}, {}, {}'.format(name, price, cost))
+	sm.new_stuff(db, name, price, cost)
 
 def remove_stuff(db, name):
 	logging.info('Remove stuff: {}'.format(name))

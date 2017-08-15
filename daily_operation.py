@@ -6,11 +6,12 @@ import daily_manager as dm
 def new_purchase(db, date, customer, stuff, amount):
 
 	price = sm.get_stuff_by_name(db, stuff)['price']
+	cost = sm.get_stuff_by_name(db, stuff)['cost']
 
-	logging.info('New purchase: {}, {}, {}, {}, {}'.format(date, customer, stuff, amount, price))
+	logging.info('New purchase: {}, {}, {}, {}, {}, {}'.format(date, customer, stuff, amount, price, cost))
 
 	cm.add_customer(db, customer, None, None)
-	cm.add_purchase(db, customer, date, stuff, amount, price)
+	cm.add_purchase(db, customer, date, stuff, amount, price, cost)
 	dm.add_daily_entry(db, date)
 	dm.add_customer(db, date, customer)
 	sm.decrease_stuff(db, stuff, amount)
