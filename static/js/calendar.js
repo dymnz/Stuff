@@ -57,6 +57,10 @@ function update_calendar() {
     //entry.href = '{{url_for('show')}}' + '?date=' + (year + '_' + month + '_' + (i+1));
     list.appendChild(entry);
   }
+
+  var month_button = document.getElementById("this_month");
+  month_button.href = window.location.href + 'month?month=' + year + '_' + month;
+
 }
 
 function daysInMonth(month, year) {

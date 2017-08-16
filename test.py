@@ -12,4 +12,5 @@ setup_logger()
 
 # manager_test(db)
 
-# operation_test(db)
+operation_test(db)
+

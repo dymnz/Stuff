@@ -3,6 +3,7 @@ from pymongo import MongoClient
 from log import *
 import daily_operation as do
 import storage_operation as so
+import customer_operation as co
 import json
 
 app = Flask(__name__)
@@ -54,6 +55,14 @@ def cost():
 	all_purchase_list = zip(all_purchase_list, sum_cost_list)
 	return render_template('cost.html', date=date, all_purchase_list=all_purchase_list)
 
+@app.route('/month')
+def month():
+	# serve index template
+	month = request.args.get('month')
+	month_purchase_list = co.get_all_month_summary_list(db, month)
+	return render_template('month.html', month=month, month_purchase_list=month_purchase_list)
+
+
 @app.route('/date/customer')
 def date_customer():
 	date = request.args.get('date')
@@ -79,8 +88,6 @@ def cost_customer():
 	date = request.args.get('date')
 	customer = request.args.get('customer')
 
-	print('customer: {}'.format(customer))
-
 	purchase_list = do.get_purchases_at_date_of_customer(db, date, customer)
 
 	if purchase_list is None: 
@@ -93,6 +100,24 @@ def cost_customer():
 		sum_total += purchase['total']
 
 	return (render_template("cost_customer.html", date=date, customer=customer, purchase_list=purchase_list, sum_total=sum_total))
+
+@app.route('/month/customer')
+def month_customer():
+	month = request.args.get('month')
+	customer = request.args.get('customer')
+	purchase_list = co.get_customer_month_purchase_list(db, customer, month)
+
+	if purchase_list is None: 
+		return render_template('month.html', month=month)	
+
+	sum_total = 0
+	for purchase in purchase_list: 
+		print(purchase)
+		purchase['total'] = int(purchase['amount']) * int(purchase['price'])
+		sum_total += purchase['total']
+
+	return (render_template("month_customer.html", month=month, customer=customer, purchase_list=purchase_list, sum_total=sum_total))
+	
 
 
 @app.route('/new_purchase', methods=['POST'])
@@ -141,6 +166,18 @@ def remove_purchase():
 		request.form['stuff'],
 		int(request.form['amount']),
 		int(request.form['price']))
+
+	if url_for('date_customer') in request.referrer:
+		return redirect(url_for('date_customer', date=request.form['date'], customer=request.form['customer']))
+	elif url_for('cost_customer') in request.referrer:	
+		return redirect(url_for('cost_customer', date=request.form['date'], customer=request.form['customer']))
+	elif url_for('month_customer') in request.referrer:	
+		split_date = request.form['date'].split('_')
+		month = split_date[0] + '_' + split_date[1]
+		return redirect(url_for('month_customer', month=month, customer=request.form['customer']))
+	else:
+		return render_template('calendar.html')
+
 	return redirect(url_for('date_customer', date=request.form['date'], customer=request.form['customer']))
 
 

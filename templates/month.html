@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{% set split_date = month.split('_') %}
+	<title>{{split_date[0]}} 年 {{split_date[1]}} 月</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<script type="text/javascript"></script>
+	<link rel="stylesheet" href="{{ url_for('static', filename='date.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='common.css') }}">
+</head>
+<body>
+
+<div id="back_button" onclick="location.href='{{ url_for('calendar')}}';">回主頁</div>
+
+<div class="title">
+	{% set split_date = month.split('_') %}
+	{{split_date[0]}} 年 {{split_date[1]}} 月
+	<br>
+	本月銷售
+</div>
+
+
+{% if month_purchase_list is not none and month_purchase_list is defined and month_purchase_list %}
+<table>
+ <tbody>
+	<tr class="thread">
+		<th>客人</th><th>總價</th>
+	</tr>
+	{% for customer, sum_total in month_purchase_list %}
+	<tr class="record">
+		<td class=""><a href="{{ url_for('month_customer', month=month, customer=customer)}}">{{customer}}</a></td>
+		<td class="">{{sum_total}}</td>
+	</tr>
+	{% endfor %}
+</tbody>	
+</table>
+
+{% else %}
+<div class="title">沒有購買紀錄</div>
+{% endif %}
+
+</body>
+<footer>By Jacky Wang (vicodin1123@gmail.com)</footer>
+</html>

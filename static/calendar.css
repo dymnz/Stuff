@@ -78,7 +78,7 @@
     background-color: #cc3333;
 }
 
-#today {
+#today, #this_month{
     margin: 5px;
     padding: 5px;
     text-align: center;

@@ -57,6 +57,17 @@ def remove_purchase(db, name, date, stuff, amount, price):
 def get_customer_by_name(db, name):
 	return db.Customer.find_one({'name': name});
 
+def get_purchases_at_month(db, name, month):
+	customer = db.Customer.find_one({'name': name});
+	purchases = customer['purchases']
+
+	month_purchase_list = []
+	for purchase in purchases:
+		if month in purchase['date']:
+			month_purchase_list.append(purchase)
+
+	return month_purchase_list
+
 def get_purchases_at_date(db, name, date):
 	purchases = db.Customer.aggregate([
     	{'$match': {'name': name, 'purchases.date': date}},

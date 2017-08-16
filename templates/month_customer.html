@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-	{% set split_date = date.split('_') %}
-	<title>{{split_date[0]}} 年 {{split_date[1]}} 月 {{split_date[2]}} 號</title>
+	{% set split_date = month.split('_') %}
+	<title>{{split_date[0]}} 年 {{split_date[1]}} 月</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 	<script type="text/javascript"></script>
 	<link rel="stylesheet" href="{{ url_for('static', filename='date_customer.css') }}">
@@ -10,21 +10,13 @@
 </head>
 <body>
 
-<div id="back_button" onclick="location.href='{{ url_for('date', date=date)}}';">回主頁</div>
+<div id="back_button" onclick="location.href='{{ url_for('month', month=month)}}';">回主頁</div>
 
 <div class="title">
-	{{split_date[0]}} 年 {{split_date[1]}} 月 {{split_date[2]}} 號
+	{{split_date[0]}} 年 {{split_date[1]}} 月
 	<br>
-	成本：{{ customer}}
+	本月銷售：{{customer}}
 </div>
-
-<form id="new_purchase" action="{{ url_for('new_purchase')}}" method="post">
-	<input style="display: none;" type="text" name="date" value={{date}}>
-   	<input style="display: none;" type="text" name="customer" value={{customer}}>
-   	<div class="form_cell">品項: <input type="text" name="stuff"></div>	
-   	<div class="form_cell">斤: <input type="number" name="amount"></div>	
-    <button id='submit' type="submit">新增</button>
-</form>
 
 
 {% if purchase_list is not none and purchase_list is defined and purchase_list %}
@@ -32,17 +24,19 @@
  <table>
  <tbody>
 	<tr class="thread">
-		<th>品項</th><th>斤</th><th>成本</th><th>總成本</th><th>移除</th>
+		<th>日期</th><th>品項</th><th>斤</th><th>單價</th><th>總價</th><th>移除</th>
 	</tr>
 	{% for purchase in purchase_list %}
 	<tr class="record">
+		{% set split_date = purchase.date.split('_') %}
+		<td class="date">{{split_date[1]}}/{{split_date[2]}}</td>
 		<td class="stuff">{{purchase.stuff}}</td>
 		<td class="amount">{{purchase.amount}}</td>
-		<td class="cost">{{purchase.cost}}</td>
+		<td class="price">{{purchase.price}}</td>
 		<td class="total">{{purchase.total}}</td>
 		<td>
 			<form id="remove_purchase" action="{{ url_for('remove_purchase')}}" method="post">
-			<input style="display: none;" type="text" name="date" value={{date}}>
+			<input style="display: none;" type="text" name="date" value={{purchase.date}}>
 		   	<input style="display: none;" type="text" name="customer" value={{customer}}>
 		   	<input style="display: none;" type="text" name="stuff" value={{purchase.stuff}}>
 		   	<input style="display: none;" type="number" name="amount" value={{purchase.amount}}>
