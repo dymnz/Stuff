@@ -32,14 +32,16 @@
  <table>
  <tbody>
 	<tr class="thread">
-		<th>品項</th><th>斤</th><th>成本</th><th>總成本</th><th>移除</th>
+		<th>品項</th><th>斤</th><th>單價</th><th>總價</th><th>成本</th><th>總成本</th><th>移除</th>
 	</tr>
 	{% for purchase in purchase_list %}
 	<tr class="record">
 		<td class="stuff">{{purchase.stuff}}</td>
 		<td class="amount">{{purchase.amount}}</td>
+		<td class="price">{{purchase.price}}</td>
+		<td class="price_total">{{purchase.price_total}}</td>
 		<td class="cost">{{purchase.cost}}</td>
-		<td class="total">{{purchase.total}}</td>
+		<td class="cost_total">{{purchase.cost_total}}</td>
 		<td>
 			<form id="remove_purchase" action="{{ url_for('remove_purchase')}}" method="post">
 			<input style="display: none;" type="text" name="date" value={{date}}>
@@ -54,7 +56,8 @@
 	{% endfor %}
 </tbody>	
 </table>
-<div class="sum_total">{{sum_total}}</div>
+<div class="sum_total">{{price_total}} - {{cost_total}} = {{profit_total}}</div>
+
 
 {% else %}
 <div class="title">沒有購買紀錄</div>

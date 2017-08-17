@@ -33,7 +33,7 @@
 	</tr>
 	{% for tuple, sum_cost in all_purchase_list %}
 	<tr class="record">
-		<td class=""><a href="{{ url_for('cost_customer', date=date, customer=tuple[0])}}">{{tuple[0]}}</a></td>
+		<td class=""><a href="{{ url_for('cost_customer_profit', date=date, customer=tuple[0])}}">{{tuple[0]}}</a></td>
 		<td class="">{{sum_cost[0]}}</td>
 		<td class="">{{sum_cost[1]}}</td>
 	</tr>

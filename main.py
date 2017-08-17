@@ -77,11 +77,33 @@ def date_customer():
 
 	sum_total = 0
 	for purchase in purchase_list: 
-		print(purchase)
 		purchase['total'] = int(purchase['amount']) * int(purchase['price'])
 		sum_total += purchase['total']
 
 	return (render_template("date_customer.html", date=date, customer=customer, purchase_list=purchase_list, sum_total=sum_total))
+
+@app.route('/cost/customer_profit')
+def cost_customer_profit():
+	date = request.args.get('date')
+	customer = request.args.get('customer')
+
+	purchase_list = do.get_purchases_at_date_of_customer(db, date, customer)
+
+	if purchase_list is None: 
+		return render_template('cost.html', date=date)	
+
+	cost_total = 0
+	price_total = 0
+	profit_total = 0
+	for purchase in purchase_list: 
+		purchase['cost_total'] = int(purchase['amount']) * int(purchase['cost'])
+		cost_total += purchase['cost_total']
+		purchase['price_total'] = int(purchase['amount']) * int(purchase['price'])
+		price_total += purchase['price_total']
+		purchase['profit_total'] = purchase['price_total'] - purchase['cost_total']
+		profit_total += purchase['profit_total']
+
+	return (render_template("cost_customer_profit.html", date=date, customer=customer, purchase_list=purchase_list, cost_total=cost_total, price_total=price_total, profit_total=profit_total))
 
 @app.route('/cost/customer')
 def cost_customer():
@@ -100,6 +122,7 @@ def cost_customer():
 		sum_total += purchase['total']
 
 	return (render_template("cost_customer.html", date=date, customer=customer, purchase_list=purchase_list, sum_total=sum_total))
+
 
 @app.route('/month/customer')
 def month_customer():
@@ -171,10 +194,12 @@ def remove_purchase():
 		return redirect(url_for('date_customer', date=request.form['date'], customer=request.form['customer']))
 	elif url_for('cost_customer') in request.referrer:	
 		return redirect(url_for('cost_customer', date=request.form['date'], customer=request.form['customer']))
+	elif url_for('cost_customer_profit') in request.referrer:	
+		return redirect(url_for('cost_customer_profit', date=request.form['date'], customer=request.form['customer']))	
 	elif url_for('month_customer') in request.referrer:	
 		split_date = request.form['date'].split('_')
 		month = split_date[0] + '_' + split_date[1]
-		return redirect(url_for('month_customer', month=month, customer=request.form['customer']))
+		return redirect(url_for('month_customer', month=month, customer=request.form['customer']))	
 	else:
 		return render_template('calendar.html')
 
