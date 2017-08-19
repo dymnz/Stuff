@@ -6,6 +6,10 @@ div{
 	display: inline-block;
 }
 
+table, th, td {
+   border: 1px solid black;
+}
+
 table{
     table-layout: fixed;
     margin: 0 auto;
@@ -18,44 +22,6 @@ td {
 #new_purchase {
 	margin: 20px 10px 0px 10px;	
 	width: 100%;
-}
-#title {
-	font-size: 50px;
-	text-align: center;
-	margin: 20px 0 0 0;
-}
-
-.customer {
-	padding: 3px 0 3px 0;
-	width: 90%;
-	font-size: 30px;
-	margin: 0px 20px 0px 20px;
-	font-weight: bold;
-	text-align: center;
-	background-color: #b1d845;
-	margin-top: 20px;
-}
-.sum_total{
-	width: 90%;
-	font-size: 25px;
-	margin: 0px 20px 20px 20px;
-	font-weight: bold;
-	text-align: right;
-	background-color: #eef442;
-	margin: 0 auto;
-	padding-right: 20px;
-}
-.thread {
-	background-color: #c9ed65;
-}
-
-.record{
-	font-size: 22px;
-	text-align: center;
-	background-color: #eef442;
-}
-
-#new_purchase {
 	font-size: 22px;
 }
 
@@ -67,37 +33,6 @@ input, #submit {
 
 .form_cell {
 	margin-right: 30px;
-}
-
-#submit {
-	border-radius: 7px;
-	background-color: #99ee99;
-	border-style: solid;
-	border-width: 0px;
-}
-
-#submit:hover {
-	background-color: #ccffcc;
-	cursor: pointer;
-}
-
-#back_button {
-    margin: 5px;
-    padding: 5px;
-    text-align: center;
-    width: 150px;
-    height: 50px;
-    border-radius: 5px;
-    font-size: 25px;
-    background-color: #33ffff;
-	position: fixed;
-	top: 20px;
-	left: 20px;
-}
-
-#back_button:hover {
-	background-color: #eeffff;
-	cursor: pointer;
 }
 
 footer {

@@ -18,6 +18,36 @@ form div{
     display: block;
 }
 
+#back_button {
+    margin: 5px;
+    padding: 5px;
+    text-align: center;
+    width: 150px;
+    height: 50px;
+    border-radius: 5px;
+    font-size: 25px;
+    background-color: #33ffff;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+}
+
+#back_button:hover {
+    background-color: #eeffff;
+    cursor: pointer;
+}
+
+.sum_total{
+    width: 90%;
+    font-size: 25px;
+    margin: 0px 20px 20px 20px;
+    font-weight: bold;
+    text-align: right;
+    background-color: #fff;
+    margin: 0 auto;
+    padding-right: 20px;
+}
+
 a {
     text-decoration: none;
 }

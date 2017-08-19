@@ -24,6 +24,7 @@
     <button id='submit' type="submit">新增</button>
 </form>
 
+<br>
 
 {% if all_purchase_list is not none and all_purchase_list is defined and all_purchase_list %}
 <table>
@@ -38,12 +39,17 @@
 		<td class="">{{sum_cost[1]}}</td>
 	</tr>
 	{% endfor %}
+	<tr class="sum_record">
+		<td>總收益：{{sum_profit}}</td>
+		<td>總價：{{sum_price}}</td>
+		<td>總成本：{{sum_cost}}</td>
+	</tr>
 </tbody>	
 </table>
-
 {% else %}
 <div class="title">沒有購買紀錄</div>
 {% endif %}
+
 
 </body>
 <footer>By Jacky Wang (vicodin1123@gmail.com)</footer>

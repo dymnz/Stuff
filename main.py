@@ -41,6 +41,8 @@ def cost():
 	if all_purchase_list is None or len(all_purchase_list)<=0: 	
 		return render_template('cost.html', date=date)
 
+	sum_cost = 0
+	sum_price = 0
 	sum_cost_list = []
 	for customer_info in all_purchase_list:
 		sum_total = 0
@@ -50,10 +52,14 @@ def cost():
 			purchase['cost_total'] = int(purchase['amount']) * int(purchase['cost'])
 			sum_total += purchase['total']
 			cost_total += purchase['cost_total']
+		sum_cost += cost_total
+		sum_price += sum_total
 		sum_cost_list.append((sum_total, cost_total))
 
+	sum_profit = sum_price - sum_cost
+
 	all_purchase_list = zip(all_purchase_list, sum_cost_list)
-	return render_template('cost.html', date=date, all_purchase_list=all_purchase_list)
+	return render_template('cost.html', date=date, all_purchase_list=all_purchase_list, sum_cost=sum_cost, sum_price=sum_price, sum_profit=sum_profit)
 
 @app.route('/month')
 def month():
